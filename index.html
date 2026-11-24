@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ride Dynamics Digital Twin</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main>
+    <header>
+      <div><p class="eyebrow">Vehicle Dynamics Portfolio Project</p><h1>Ride Dynamics Digital Twin</h1></div>
+      <span id="status" class="badge">SIMULATION LIVE</span>
+    </header>
+    <section class="layout">
+      <aside class="panel controls">
+        <h2>Suspension setup</h2>
+        <label>Spring stiffness <output id="springOut">28</output> kN/m</label><input id="spring" type="range" min="10" max="60" value="28" />
+        <label>Damping <output id="dampingOut">2.4</output> kN·s/m</label><input id="damping" type="range" min="0.5" max="6" step="0.1" value="2.4" />
+        <label>Vehicle speed <output id="speedOut">55</output> km/h</label><input id="speed" type="range" min="15" max="120" value="55" />
+        <label>Road severity <output id="severityOut">2.0</output> cm</label><input id="severity" type="range" min="0.5" max="6" step="0.1" value="2" />
+        <div class="buttons"><button id="runBtn" class="primary">Replay road</button><button id="pauseBtn">Pause</button></div>
+        <div class="metrics">
+          <article><span>Ride RMS</span><strong id="rms">--</strong></article>
+          <article><span>Peak accel.</span><strong id="peak">--</strong></article>
+          <article><span>Suspension travel</span><strong id="travel">--</strong></article>
+          <article><span>Comfort grade</span><strong id="grade">--</strong></article>
+        </div>
+        <div class="insight"><span>Design insight</span><p id="insight">Tune damping to reduce body acceleration without excessive suspension travel.</p></div>
+      </aside>
+      <section class="panel visualization">
+        <div class="telemetry"><span>QUARTER-CAR MODEL</span><strong id="timeReadout">t = 0.0 s</strong></div>
+        <canvas id="simCanvas" width="900" height="500" aria-label="Animated quarter-car suspension"></canvas>
+        <div class="legend"><span><i class="dot road"></i>Road input</span><span><i class="dot body"></i>Sprung mass</span><span><i class="dot tire"></i>Unsprung mass</span></div>
+      </section>
+    </section>
+  </main>
+  <script type="module" src="simulator.js"></script>
+</body>
+</html>
